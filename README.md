@@ -3,7 +3,7 @@
 <h1 align="center">
   Gatsby Static Site
 </h1>
-<p>an example of using Gatsby, react and GraphQL for a static site<br>check this out:
+<p>in progress.. an example of next.js app - using react to create server side render app.<br>check this out:
   <a href="https://nisan250.github.io/gatsby-static-site/">https://nisan250.github.io/gatsby-static-site/</a>
 </p>
 <br><br><br><br><br><br><br><br><br><br><br><br>
