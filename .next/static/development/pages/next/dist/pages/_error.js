@@ -4564,7 +4564,7 @@ module.exports = (__webpack_require__(/*! dll-reference dll_55dc4e2ecf7824085104
 
 /***/ }),
 
-/***/ 2:
+/***/ 6:
 /*!*************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F_error&absolutePagePath=D%3A%5Capps%5Cnext-js-app%5Cnode_modules%5Cnext%5Cdist%5Cpages%5C_error.js ***!
   \*************************************************************************************************************************************************/
@@ -4587,5 +4587,5 @@ module.exports = dll_55dc4e2ecf7824085104;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]));;
+},[[6,"static/runtime/webpack.js"]]]));;
 //# sourceMappingURL=_error.js.map
