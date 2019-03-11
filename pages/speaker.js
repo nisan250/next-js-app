@@ -1,12 +1,21 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import getConfig from 'next/config';
+const {serverRuntimeConfig, publicRuntimeConfig} = getConfig();
 
 class Speaker extends Component {
 
+    static GetSpeakerUrl() {
+        if (process.env.NODE_ENV === "production") {
+            return process.env.RESTURL_SPEAKER_PROD
+                || publicRuntimeConfig.RESTURL_SPEAKER_PROD;
+        } else {
+            return process.env.RESTURL_SPEAKER_DEV;
+        }
+    }
     static async getInitialProps({query}) {
-        var promise =
-            axios.
-            get(`http://localhost:4000/speakers/${query.speakerId}`).
+        var promise = axios.
+            get(`${Speaker.GetSpeakerUrl()}/${query.speakerId}`).
             then(response => {
                 return {
                     hasErrored: false,
@@ -21,12 +30,21 @@ class Speaker extends Component {
         return promise;
     }
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            hasErrored: props.hasErrored,
+            message: props.message,
+            speakerDataOne: props.speakerDataOne
+        }
+    }
+
     render() {
         return (
             <div className='container'>
                 <div className="row">
-                    <h2 className='margintopbottom'>{this.props.speakerDataOne.firstName} {this.props.speakerDataOne.lastName}</h2>
-                    <p className='margintopbottom'>{this.props.speakerDataOne.bio}</p>
+                    <h2 className='margintopbottom20'>{this.state.speakerDataOne.firstName} {this.state.speakerDataOne.lastName}</h2>
+                    <p className='margintopbottom20'  dangerouslySetInnerHTML={{__html: this.state.speakerDataOne.bio}}    ></p>
                 </div>
             </div>
         );

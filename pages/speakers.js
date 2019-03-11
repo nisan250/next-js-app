@@ -48,7 +48,7 @@ class Speakers extends React.Component {
                     <div className="card-deck">
                         {this.state.speakerData.map((speaker) =>
                             <div className="card col-4 cardmin margintopbottom" key={speaker.id}>
-                                <SpeakerCard speaker={speaker}/>
+                                <SpeakerCard isLoading={this.state.isLoading}speaker={speaker}/>
                             </div>
                         )}
                     </div>

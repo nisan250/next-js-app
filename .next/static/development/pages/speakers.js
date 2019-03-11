@@ -10290,6 +10290,504 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-placeholder/lib/ReactPlaceholder.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/react-placeholder/lib/ReactPlaceholder.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
+exports.__esModule = true;
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var PropTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+var placeholders = __webpack_require__(/*! ./placeholders */ "./node_modules/react-placeholder/lib/placeholders/index.js");
+var ReactPlaceholder = /** @class */ (function (_super) {
+    __extends(ReactPlaceholder, _super);
+    function ReactPlaceholder() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.state = {
+            ready: _this.props.ready
+        };
+        _this.getFiller = function () {
+            var _a = _this.props, firstLaunchOnly = _a.firstLaunchOnly, children = _a.children, ready = _a.ready, className = _a.className, // eslint-disable-line no-unused-vars
+            type = _a.type, customPlaceholder = _a.customPlaceholder, showLoadingAnimation = _a.showLoadingAnimation, rest = __rest(_a, ["firstLaunchOnly", "children", "ready", "className", "type", "customPlaceholder", "showLoadingAnimation"]);
+            var classes = showLoadingAnimation ?
+                ['show-loading-animation', className].filter(function (c) { return c; }).join(' ') :
+                className;
+            if (customPlaceholder && React.isValidElement(customPlaceholder)) {
+                var mergedCustomClasses = [
+                    customPlaceholder.props.className,
+                    classes
+                ].filter(function (c) { return c; }).join(' ');
+                return React.cloneElement(customPlaceholder, { className: mergedCustomClasses });
+            }
+            else if (customPlaceholder) {
+                return customPlaceholder;
+            }
+            var Placeholder = placeholders[type];
+            return React.createElement(Placeholder, __assign({}, rest, { className: classes }));
+        };
+        _this.setNotReady = function () {
+            var delay = _this.props.delay;
+            if (delay && delay > 0) {
+                _this.timeout = window.setTimeout(function () {
+                    _this.setState({ ready: false });
+                }, delay);
+            }
+            else {
+                _this.setState({ ready: false });
+            }
+        };
+        _this.setReady = function () {
+            if (_this.timeout) {
+                window.clearTimeout(_this.timeout);
+            }
+            if (!_this.state.ready) {
+                _this.setState({ ready: true });
+            }
+        };
+        return _this;
+    }
+    ReactPlaceholder.prototype.render = function () {
+        return this.state.ready ? this.props.children : this.getFiller();
+    };
+    ReactPlaceholder.prototype.componentWillReceiveProps = function (nextProps) {
+        if (!this.props.firstLaunchOnly && this.state.ready && !nextProps.ready) {
+            this.setNotReady();
+        }
+        else if (nextProps.ready) {
+            this.setReady();
+        }
+    };
+    ReactPlaceholder.propTypes = {
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.element
+        ]).isRequired,
+        delay: PropTypes.number,
+        ready: PropTypes.bool.isRequired,
+        firstLaunchOnly: PropTypes.bool,
+        type: PropTypes.oneOf(['text', 'media', 'textRow', 'rect', 'round']),
+        rows: PropTypes.number,
+        color: PropTypes.string,
+        showLoadingAnimation: PropTypes.bool,
+        customPlaceholder: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.element
+        ]),
+        className: PropTypes.string,
+        style: PropTypes.object
+    };
+    ReactPlaceholder.defaultProps = {
+        delay: 0,
+        type: 'text',
+        color: '#CDCDCD'
+    };
+    return ReactPlaceholder;
+}(React.Component));
+exports["default"] = ReactPlaceholder;
+
+
+/***/ }),
+
+/***/ "./node_modules/react-placeholder/lib/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-placeholder/lib/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var ReactPlaceholder_1 = __webpack_require__(/*! ./ReactPlaceholder */ "./node_modules/react-placeholder/lib/ReactPlaceholder.js");
+exports["default"] = ReactPlaceholder_1["default"];
+
+
+/***/ }),
+
+/***/ "./node_modules/react-placeholder/lib/placeholders/MediaBlock.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/react-placeholder/lib/placeholders/MediaBlock.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+exports.__esModule = true;
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var PropTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+var TextBlock_1 = __webpack_require__(/*! ./TextBlock */ "./node_modules/react-placeholder/lib/placeholders/TextBlock.js");
+var RoundShape_1 = __webpack_require__(/*! ./RoundShape */ "./node_modules/react-placeholder/lib/placeholders/RoundShape.js");
+var MediaBlock = /** @class */ (function (_super) {
+    __extends(MediaBlock, _super);
+    function MediaBlock() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MediaBlock.prototype.render = function () {
+        var _a = this.props, className = _a.className, style = _a.style, color = _a.color, rows = _a.rows;
+        var defaultStyles = {
+            display: 'flex'
+        };
+        var classes = ['media-block', className].filter(function (c) { return c; }).join(' ');
+        return (React.createElement("div", { className: classes, style: __assign({}, defaultStyles, style) },
+            React.createElement(RoundShape_1["default"], { color: color, style: { minHeight: 55, width: 55, minWidth: 55, marginRight: 10 } }),
+            React.createElement(TextBlock_1["default"], { color: color, rows: rows })));
+    };
+    MediaBlock.propTypes = {
+        rows: PropTypes.number.isRequired,
+        color: PropTypes.string.isRequired,
+        style: PropTypes.object,
+        className: PropTypes.string
+    };
+    return MediaBlock;
+}(React.Component));
+exports["default"] = MediaBlock;
+
+
+/***/ }),
+
+/***/ "./node_modules/react-placeholder/lib/placeholders/RectShape.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/react-placeholder/lib/placeholders/RectShape.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+exports.__esModule = true;
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var PropTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+var RectShape = /** @class */ (function (_super) {
+    __extends(RectShape, _super);
+    function RectShape() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RectShape.prototype.render = function () {
+        var _a = this.props, className = _a.className, style = _a.style, color = _a.color;
+        var defaultStyle = {
+            backgroundColor: color,
+            width: '100%',
+            height: '100%',
+            marginRight: 10
+        };
+        var classes = ['rect-shape', className].filter(function (c) { return c; }).join(' ');
+        return (React.createElement("div", { className: classes, style: __assign({}, defaultStyle, style) }));
+    };
+    RectShape.propTypes = {
+        color: PropTypes.string,
+        className: PropTypes.string,
+        style: PropTypes.object
+    };
+    return RectShape;
+}(React.Component));
+exports["default"] = RectShape;
+
+
+/***/ }),
+
+/***/ "./node_modules/react-placeholder/lib/placeholders/RoundShape.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/react-placeholder/lib/placeholders/RoundShape.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+exports.__esModule = true;
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var PropTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+var RoundShape = /** @class */ (function (_super) {
+    __extends(RoundShape, _super);
+    function RoundShape() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RoundShape.prototype.render = function () {
+        var _a = this.props, className = _a.className, style = _a.style, color = _a.color;
+        var defaultStyles = {
+            backgroundColor: color,
+            borderRadius: '500rem',
+            width: '100%',
+            height: '100%'
+        };
+        var classes = ['round-shape', className].filter(function (c) { return c; }).join(' ');
+        return (React.createElement("div", { className: classes, style: __assign({}, defaultStyles, style) }));
+    };
+    RoundShape.propTypes = {
+        color: PropTypes.string.isRequired,
+        className: PropTypes.string,
+        style: PropTypes.object
+    };
+    return RoundShape;
+}(React.Component));
+exports["default"] = RoundShape;
+
+
+/***/ }),
+
+/***/ "./node_modules/react-placeholder/lib/placeholders/TextBlock.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/react-placeholder/lib/placeholders/TextBlock.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+exports.__esModule = true;
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var PropTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+var TextRow_1 = __webpack_require__(/*! ./TextRow */ "./node_modules/react-placeholder/lib/placeholders/TextRow.js");
+var TextBlock = /** @class */ (function (_super) {
+    __extends(TextBlock, _super);
+    function TextBlock() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.getRowStyle = function (i) {
+            var _a = _this.props, rows = _a.rows, widths = _a.widths;
+            return {
+                maxHeight: (100 / (rows * 2 - 1)) + "%",
+                width: widths[(i + widths.length) % widths.length] + "%"
+            };
+        };
+        _this.getRows = function () {
+            var _a = _this.props, rows = _a.rows, lineSpacing = _a.lineSpacing, color = _a.color;
+            var range = Array.apply(null, Array(rows));
+            return range.map(function (_, i) { return (React.createElement(TextRow_1["default"], { color: color, style: _this.getRowStyle(i), lineSpacing: i !== 0 ? lineSpacing : 0, key: i })); });
+        };
+        return _this;
+    }
+    TextBlock.prototype.render = function () {
+        var _a = this.props, style = _a.style, className = _a.className;
+        var defaultStyles = {
+            width: '100%'
+        };
+        var classes = ['text-block', className].filter(function (c) { return c; }).join(' ');
+        return (React.createElement("div", { className: classes, style: __assign({}, defaultStyles, style) }, this.getRows()));
+    };
+    TextBlock.propTypes = {
+        rows: PropTypes.number.isRequired,
+        color: PropTypes.string.isRequired,
+        lineSpacing: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+        widths: PropTypes.arrayOf(PropTypes.number),
+        style: PropTypes.object,
+        className: PropTypes.string
+    };
+    TextBlock.defaultProps = {
+        widths: [97, 100, 94, 90, 98, 95, 98, 40]
+    };
+    return TextBlock;
+}(React.Component));
+exports["default"] = TextBlock;
+
+
+/***/ }),
+
+/***/ "./node_modules/react-placeholder/lib/placeholders/TextRow.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/react-placeholder/lib/placeholders/TextRow.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+exports.__esModule = true;
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var PropTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+var TextRow = /** @class */ (function (_super) {
+    __extends(TextRow, _super);
+    function TextRow() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    TextRow.prototype.render = function () {
+        var _a = this.props, className = _a.className, maxHeight = _a.maxHeight, color = _a.color, lineSpacing = _a.lineSpacing, style = _a.style;
+        var defaultStyles = {
+            maxHeight: maxHeight,
+            width: '100%',
+            height: '1em',
+            backgroundColor: color,
+            marginTop: lineSpacing
+        };
+        var classes = ['text-row', className].filter(function (c) { return c; }).join(' ');
+        return (React.createElement("div", { className: classes, style: __assign({}, defaultStyles, style) }));
+    };
+    TextRow.propTypes = {
+        maxHeight: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+        className: PropTypes.string,
+        color: PropTypes.string.isRequired,
+        lineSpacing: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+        style: PropTypes.object
+    };
+    TextRow.defaultProps = {
+        lineSpacing: '0.7em'
+    };
+    return TextRow;
+}(React.Component));
+exports["default"] = TextRow;
+
+
+/***/ }),
+
+/***/ "./node_modules/react-placeholder/lib/placeholders/index.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/react-placeholder/lib/placeholders/index.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.__esModule = true;
+var TextRow_1 = __webpack_require__(/*! ./TextRow */ "./node_modules/react-placeholder/lib/placeholders/TextRow.js");
+exports.TextRow = TextRow_1["default"];
+var RoundShape_1 = __webpack_require__(/*! ./RoundShape */ "./node_modules/react-placeholder/lib/placeholders/RoundShape.js");
+exports.RoundShape = RoundShape_1["default"];
+var RectShape_1 = __webpack_require__(/*! ./RectShape */ "./node_modules/react-placeholder/lib/placeholders/RectShape.js");
+exports.RectShape = RectShape_1["default"];
+var TextBlock_1 = __webpack_require__(/*! ./TextBlock */ "./node_modules/react-placeholder/lib/placeholders/TextBlock.js");
+exports.TextBlock = TextBlock_1["default"];
+var MediaBlock_1 = __webpack_require__(/*! ./MediaBlock */ "./node_modules/react-placeholder/lib/placeholders/MediaBlock.js");
+exports.MediaBlock = MediaBlock_1["default"];
+exports.textRow = TextRow_1["default"];
+exports.round = RoundShape_1["default"];
+exports.rect = RectShape_1["default"];
+exports.text = TextBlock_1["default"];
+exports.media = MediaBlock_1["default"];
+
+
+/***/ }),
+
 /***/ "./node_modules/react/index.js":
 /*!*******************************************************************************************!*\
   !*** delegated ./node_modules/react/index.js from dll-reference dll_55dc4e2ecf7824085104 ***!
@@ -11926,7 +12424,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "D:\\apps\\next-js-app\\pages\\speakers.js";
 
 
 
@@ -11999,43 +12496,21 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: "container",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 46
-        },
-        __self: this
+        className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: "row",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 47
-        },
-        __self: this
+        className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: "card-deck",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 48
-        },
-        __self: this
+        className: "card-deck"
       }, this.state.speakerData.map(function (speaker) {
         return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           className: "card col-4 cardmin margintopbottom",
-          key: speaker.id,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 50
-          },
-          __self: this
+          key: speaker.id
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_src_SpeakerCard__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          speaker: speaker,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 51
-          },
-          __self: this
+          isLoading: _this2.state.isLoading,
+          speaker: speaker
         }));
       }))));
     }
@@ -12066,12 +12541,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_placeholder__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-placeholder */ "./node_modules/react-placeholder/lib/index.js");
+/* harmony import */ var react_placeholder__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_placeholder__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_placeholder_lib_reactPlaceholder_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-placeholder/lib/reactPlaceholder.css */ "./node_modules/react-placeholder/lib/reactPlaceholder.css");
+/* harmony import */ var react_placeholder_lib_reactPlaceholder_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_placeholder_lib_reactPlaceholder_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_placeholder_lib_placeholders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-placeholder/lib/placeholders */ "./node_modules/react-placeholder/lib/placeholders/index.js");
+/* harmony import */ var react_placeholder_lib_placeholders__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_placeholder_lib_placeholders__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
 
 
-var _jsxFileName = "D:\\apps\\next-js-app\\src\\SpeakerCard.js";
+
+
+
+
 
 
 
@@ -12089,27 +12573,20 @@ function (_Component) {
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(SpeakerCard, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 8
-        },
-        __self: this
+      var awesomePlaceholder1 = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_placeholder_lib_placeholders__WEBPACK_IMPORTED_MODULE_9__["MediaBlock"], {
+        color: "#E0E0E0",
+        rows: 6
+      });
+      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_placeholder__WEBPACK_IMPORTED_MODULE_7___default.a, {
+        showLoadingAnimation: true,
+        delay: 2500,
+        ready: !this.props.isLoading,
+        customPlaceholder: awesomePlaceholder1
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
         className: "card-img-top",
-        src: "/static/speakers/Speaker-".concat(this.props.speaker.id, ".jpg"),
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 9
-        },
-        __self: this
+        src: "/static/speakers/Speaker-".concat(this.props.speaker.id, ".jpg")
       }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-        className: "card-body",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 10
-        },
-        __self: this
+        className: "card-body"
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_6___default.a, {
         href: {
           pathname: "/speaker",
@@ -12117,33 +12594,13 @@ function (_Component) {
             speakerId: this.props.speaker.id
           }
         },
-        as: "speaker/".concat(this.props.speaker.id),
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 11
-        },
-        __self: this
+        as: "speaker/".concat(this.props.speaker.id)
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("a", {
-        className: "btn btn-lg btn-block btn-outline-primary",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 19
-        },
-        __self: this
+        className: "btn btn-lg btn-block btn-outline-primary"
       }, "Details")), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h4", {
-        className: "card-title",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 23
-        },
-        __self: this
-      }, this.props.speaker.userFirstName, " ", this.props.speaker.userLastName, " "), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
-        className: "card-text",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 24
-        },
-        __self: this
+        className: "card-title"
+      }, this.props.speaker.userFirstName, this.props.speaker.userLastName, " "), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
+        className: "card-text"
       }, this.props.speaker.bioShort)));
     }
   }]);
@@ -12155,7 +12612,7 @@ function (_Component) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fspeakers&absolutePagePath=D%3A%5Capps%5Cnext-js-app%5Cpages%5Cspeakers.js ***!
   \************************************************************************************************************************/
@@ -12178,5 +12635,5 @@ module.exports = dll_55dc4e2ecf7824085104;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]));;
+},[[5,"static/runtime/webpack.js","styles"]]]));;
 //# sourceMappingURL=speakers.js.map

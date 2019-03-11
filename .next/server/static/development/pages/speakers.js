@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1357,6 +1357,17 @@ module.exports = __webpack_require__(/*! ./dist/client/router */ "./node_modules
 
 /***/ }),
 
+/***/ "./node_modules/react-placeholder/lib/reactPlaceholder.css":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-placeholder/lib/reactPlaceholder.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "./pages/speakers.js":
 /*!***************************!*\
   !*** ./pages/speakers.js ***!
@@ -1386,7 +1397,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "D:\\apps\\next-js-app\\pages\\speakers.js";
 
 
 
@@ -1459,43 +1469,21 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: "container",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 46
-        },
-        __self: this
+        className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: "row",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 47
-        },
-        __self: this
+        className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
-        className: "card-deck",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 48
-        },
-        __self: this
+        className: "card-deck"
       }, this.state.speakerData.map(function (speaker) {
         return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           className: "card col-4 cardmin margintopbottom",
-          key: speaker.id,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 50
-          },
-          __self: this
+          key: speaker.id
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_src_SpeakerCard__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          speaker: speaker,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 51
-          },
-          __self: this
+          isLoading: _this2.state.isLoading,
+          speaker: speaker
         }));
       }))));
     }
@@ -1526,12 +1514,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_placeholder__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-placeholder */ "react-placeholder");
+/* harmony import */ var react_placeholder__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_placeholder__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_placeholder_lib_reactPlaceholder_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-placeholder/lib/reactPlaceholder.css */ "./node_modules/react-placeholder/lib/reactPlaceholder.css");
+/* harmony import */ var react_placeholder_lib_reactPlaceholder_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_placeholder_lib_reactPlaceholder_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_placeholder_lib_placeholders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-placeholder/lib/placeholders */ "react-placeholder/lib/placeholders");
+/* harmony import */ var react_placeholder_lib_placeholders__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_placeholder_lib_placeholders__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
 
 
-var _jsxFileName = "D:\\apps\\next-js-app\\src\\SpeakerCard.js";
+
+
+
+
 
 
 
@@ -1549,27 +1546,20 @@ function (_Component) {
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(SpeakerCard, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 8
-        },
-        __self: this
+      var awesomePlaceholder1 = react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_placeholder_lib_placeholders__WEBPACK_IMPORTED_MODULE_9__["MediaBlock"], {
+        color: "#E0E0E0",
+        rows: 6
+      });
+      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_placeholder__WEBPACK_IMPORTED_MODULE_7___default.a, {
+        showLoadingAnimation: true,
+        delay: 2500,
+        ready: !this.props.isLoading,
+        customPlaceholder: awesomePlaceholder1
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
         className: "card-img-top",
-        src: "/static/speakers/Speaker-".concat(this.props.speaker.id, ".jpg"),
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 9
-        },
-        __self: this
+        src: "/static/speakers/Speaker-".concat(this.props.speaker.id, ".jpg")
       }), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-        className: "card-body",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 10
-        },
-        __self: this
+        className: "card-body"
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_6___default.a, {
         href: {
           pathname: "/speaker",
@@ -1577,33 +1567,13 @@ function (_Component) {
             speakerId: this.props.speaker.id
           }
         },
-        as: "speaker/".concat(this.props.speaker.id),
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 11
-        },
-        __self: this
+        as: "speaker/".concat(this.props.speaker.id)
       }, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("a", {
-        className: "btn btn-lg btn-block btn-outline-primary",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 19
-        },
-        __self: this
+        className: "btn btn-lg btn-block btn-outline-primary"
       }, "Details")), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h4", {
-        className: "card-title",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 23
-        },
-        __self: this
-      }, this.props.speaker.userFirstName, " ", this.props.speaker.userLastName, " "), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
-        className: "card-text",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 24
-        },
-        __self: this
+        className: "card-title"
+      }, this.props.speaker.userFirstName, this.props.speaker.userLastName, " "), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
+        className: "card-text"
       }, this.props.speaker.bioShort)));
     }
   }]);
@@ -1615,7 +1585,7 @@ function (_Component) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!*********************************!*\
   !*** multi ./pages/speakers.js ***!
   \*********************************/
@@ -1811,6 +1781,28 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-is");
+
+/***/ }),
+
+/***/ "react-placeholder":
+/*!************************************!*\
+  !*** external "react-placeholder" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-placeholder");
+
+/***/ }),
+
+/***/ "react-placeholder/lib/placeholders":
+/*!*****************************************************!*\
+  !*** external "react-placeholder/lib/placeholders" ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-placeholder/lib/placeholders");
 
 /***/ }),
 

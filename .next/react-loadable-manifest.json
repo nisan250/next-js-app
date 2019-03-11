@@ -27,12 +27,26 @@
       "name": null,
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 6,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
     }
   ],
   "../css/site.css": [
     {
       "id": "./css/site.css",
       "name": "./css/site.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "react-placeholder/lib/reactPlaceholder.css": [
+    {
+      "id": "./node_modules/react-placeholder/lib/reactPlaceholder.css",
+      "name": "./node_modules/react-placeholder/lib/reactPlaceholder.css",
       "file": "static/chunks/styles.js",
       "publicPath": "static/chunks/styles.js"
     }

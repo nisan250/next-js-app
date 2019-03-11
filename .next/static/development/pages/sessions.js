@@ -6004,7 +6004,7 @@ function (_Component) {
 
 /***/ }),
 
-/***/ 5:
+/***/ 7:
 /*!************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fsessions&absolutePagePath=D%3A%5Capps%5Cnext-js-app%5Cpages%5Csessions.js ***!
   \************************************************************************************************************************/
@@ -6027,5 +6027,5 @@ module.exports = dll_55dc4e2ecf7824085104;
 
 /***/ })
 
-},[[5,"static/runtime/webpack.js"]]]));;
+},[[7,"static/runtime/webpack.js"]]]));;
 //# sourceMappingURL=sessions.js.map
